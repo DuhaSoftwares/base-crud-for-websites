@@ -11,6 +11,7 @@
                     <th>Description</th>
                     <th>Price</th>
                     <th>Image</th>
+                    <th>category</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -22,10 +23,11 @@
                     <td>
                         <img [src]="product.image" alt="{{ product.name }}" class="img-thumbnail" width="50" />
                     </td>
+                    <td >{{ product.category?.name }}</td>
                     <td>
-                        <a [routerLink]="['/products', product._id]" class="btn btn-info btn-sm">View</a>
-                        <a [routerLink]="['/products/edit', product._id]" class="btn btn-warning btn-sm">Edit</a>
-                        <button (click)="deleteProduct(product._id)" class="btn btn-danger btn-sm">Delete</button>
+                        <a [routerLink]="['/products', product._id]" class="btn btn-info btn-sm me-1">View</a>
+                        <a [routerLink]="['/products/edit', product._id]" class="btn btn-warning btn-sm ms-1">Edit</a>
+                        <button (click)="deleteProduct(product._id)" class="btn btn-danger btn-sm ms-2">Delete</button>
                     </td>
                 </tr>
             </tbody>

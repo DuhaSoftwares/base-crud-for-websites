@@ -21,8 +21,9 @@ export class ProductCreateComponent {
   constructor(private productService: ProductsService, private router: Router) {
     this. getAllCategories()
   }
+  categoryId:string=''
 onCategoryChange() {
-    // alert(`Selected Category ID: ${this.category}`);
+  this.categoryId=this.category
 }
   onImageChange(event: any) {
     this.image = event.target.files[0];
@@ -36,7 +37,7 @@ onCategoryChange() {
     formData.append('image', this.image || '');
     formData.append('units', this.units);
     formData.append('isBestSelling', this.isBestSelling ? 'true' : 'false');
-    formData.append('category', this.category);
+    formData.append('category', this.categoryId);
 
     this.productService.createProduct(formData).subscribe(() => {
       this.router.navigate(['/products']);

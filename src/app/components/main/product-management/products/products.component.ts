@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { Category, Product } from 'src/app/models/product.model';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -29,7 +29,9 @@ export class ProductsComponent implements OnInit {
   }
   loadProducts() {
     this.productService.getAllProductsByPagination(this.currentPage, this.itemsPerPage).subscribe((response) => {
-      this.products = response; // Adjust based on your API response structure
+      this.products = response;
+      console.log(this.products)
+      // Adjust based on your API response structure
       // Assume response.totalCount is the total number of products
     });
   }
@@ -42,11 +44,21 @@ export class ProductsComponent implements OnInit {
 
   deleteProduct(id: string) {
     this.productService.deleteProduct(id).subscribe(() => {
+      alert("deleted")
       this.loadProducts(); // Reload the product list
     });
   }
 
   totalPagesArray(): number[] {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+    category: string = ''; // Update with your category model
+  categories: Category[] = [];
+
+    getAllCategories() {
+      this.productService.getAllCategories().subscribe((categories) => {
+        this.categories = categories;
+        console.log(this.categories)
+    });
   }
 }

@@ -31,8 +31,10 @@
         </div>
         <div class="form-group">
             <label for="category">Category ID</label>
-            <input type="text" [(ngModel)]="category" name="category" required class="form-control"
-                placeholder="Enter category ID" />
+                <select [(ngModel)]="category" name="category" class="form-control" (change)="onCategoryChange()">
+                    <option value="se" disabled selected>Select Category</option>
+                    <option *ngFor="let item of categories" [value]="item._id">{{ item.name }}</option>
+                </select>
         </div>
         <div class="form-group">
             <label for="image">Image</label>

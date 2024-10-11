@@ -24,14 +24,18 @@ export class ProductEditComponent implements OnInit {
     private productService: ProductsService,
     private router: Router
   ) {
-    this. getAllCategories()
+   
 
    }
 
   ngOnInit(): void {
+    this. getAllCategories()
     this.loadProduct();
   }
-
+  categoryId:string=''
+onCategoryChange() {
+  this.categoryId=this.category
+}
   loadProduct() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -62,11 +66,12 @@ export class ProductEditComponent implements OnInit {
     formData.append('image', this.image || '');
     formData.append('units', this.units);
     formData.append('isBestSelling', this.isBestSelling ? 'true' : 'false');
-    formData.append('category', this.category);
+    formData.append('category', this.categoryId);
 
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.productService.updateProduct(id, formData).subscribe(() => {
+        alert('updated')
         this.router.navigate(['/products']);
       });
     }
