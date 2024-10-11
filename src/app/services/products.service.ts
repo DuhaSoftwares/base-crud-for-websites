@@ -7,8 +7,12 @@ import { environment } from '../environments/environment';
   providedIn: 'root',
 })
 export class ProductsService {
-  private apiUrl = 'http://localhost:5000/products';
-  private apiUrlCat = 'http://localhost:5000/categories';  // Adjust according to your backend API
+  // private apiUrl = 'http://localhost:5000/products';
+  private apiUrl = 'https://farmers-dry-fruit-server.onrender.com/products';
+
+  // private apiUrlCat = 'http://localhost:5000/categories';  // Adjust according to your backend API
+  private apiUrlCat = 'https://farmers-dry-fruit-server.onrender.com/categories';  // Adjust according to your backend API
+
   // Adjust according to your backend API
 
   constructor(private http: HttpClient) {}
